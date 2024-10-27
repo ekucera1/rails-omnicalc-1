@@ -20,7 +20,7 @@ class ZebraController < ApplicationController
   end
     render({ :template => "templates/square_root"})
   end
-
+  
   def lion
     @rolls = []
 
@@ -29,7 +29,13 @@ class ZebraController < ApplicationController
 
     @rolls.push(die)
   end
-    render({ :template => "templates/payment"})
+
+  
+
+  def square_results
+    @number = params.fetch("number").to_i
+    @square = @number * @number
+    render({ :template => "templates/square_results" })
   end
 
   def tiger
@@ -42,24 +48,10 @@ class ZebraController < ApplicationController
   end
     render({ :template => "templates/random"})
   end
-=begin
-  def bobcat
-    @num1 = params["num1"].to_i
-    @num2 = params["num2"].to_i
-    
-    @rolls = []
-
-  @num1.times do
-    die = rand(1..@num2)
-
-    @rolls.push(die)
-  end
-    render({ :template => "templates/home"})
-  end
-=end
 
   def rules
     render({ :template => "templates/home"})
   end
 
+end
 end
