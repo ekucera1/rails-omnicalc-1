@@ -1,51 +1,46 @@
 class ZebraController < ApplicationController
   def giraffe
-  @rolls = []
-
-  1.times do
-    die = rand(1..20)
-
-    @rolls.push(die)
-  end
     render({ :template => "templates/square"})
   end
 
   def elephant
-    @rolls = []
-
-  2.times do
-    die = rand(1..6)
-
-    @rolls.push(die)
-  end
     render({ :template => "templates/square_root"})
   end
   
   def lion
-    @rolls = []
-
-  2.times do
-    die = rand(1..10)
-
-    @rolls.push(die)
+    render({ :template => "templates/payment"})
   end
 
-  
-
   def square_results
-    @number = params.fetch("number").to_i
+    @number = params.fetch("number").to_f
     @square = @number * @number
     render({ :template => "templates/square_results" })
   end
 
-  def tiger
-    @rolls = []
-
-  5.times do
-    die = rand(1..4)
-
-    @rolls.push(die)
+  def square_root_results
+    @number = params.fetch("user_number").to_f
+    @square_root = @number ** 0.5
+    render({ :template => "templates/square_root_results" })
   end
+
+  def random_results
+    @number1 = params.fetch("user_min").to_f
+    @number2 = params.fetch("user_max").to_f
+    @random = rand(@number1..@number2)
+    render({ :template => "templates/random_results" })
+  end
+
+  def payment_results
+    @number1 = params.fetch("user_apr").to_f
+    @number2 = params.fetch("user_years").to_f
+    @number3 = params.fetch("user_pv").to_f
+    @place = @number3 * @number1 * @number2 
+    @place1 = @place + @number3
+    @payment = @place1
+    render({ :template => "templates/payment_results" })
+  end
+
+  def tiger
     render({ :template => "templates/random"})
   end
 
@@ -53,5 +48,4 @@ class ZebraController < ApplicationController
     render({ :template => "templates/home"})
   end
 
-end
 end
